@@ -1,82 +1,63 @@
 import 'package:flutter/material.dart';
+import 'dart:math';
 
 void main() {
-  runApp(MyApp());
+  return runApp(
+    MaterialApp(
+      home: Scaffold(
+        backgroundColor: Colors.red,
+        appBar: AppBar(
+          title: Text('Dicee'),
+          backgroundColor: Colors.red,
+        ),
+        body: DicePage(),
+      ),
+    ),
+  );
 }
 
-class MyApp extends StatelessWidget {
+class DicePage extends StatefulWidget {
+  @override
+  State<DicePage> createState() => _DicePageState();
+}
+
+class _DicePageState extends State<DicePage> {
+  int leftDiceNumber = 1;
+  int rightDiceNumber = 4;
+
+  void rolldice() {
+    leftDiceNumber = Random().nextInt(6) + 1;
+    rightDiceNumber = Random().nextInt(6) + 1;
+  }
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        backgroundColor: Colors.teal,
-        body: SafeArea(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            // crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              CircleAvatar(
-                radius: 50,
-                backgroundImage: AssetImage('images/avatar.png'),
-              ),
-              Text(
-                'Ibrahim Am',
-                style: TextStyle(
-                  fontFamily: 'Pacifico',
-                  fontSize: 40,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                ),
-              ),
-              Text(
-                'FLUTTER DEVELOPER',
-                style: TextStyle(
-                  fontFamily: ('Source Sans Pro'),
-                  color: Colors.teal[100],
-                  fontSize: 20,
-                  letterSpacing: 2.5,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              SizedBox(
-                  height: 20,
-                  width: 150,
-                  child: Divider(
-                    color: Colors.teal[100],
-                  )),
-              Card(
-                margin: EdgeInsets.symmetric(vertical: 10, horizontal: 25),
-                child: ListTile(
-                  leading: Icon(
-                    Icons.phone,
-                    color: Colors.teal,
-                  ),
-                  title: Text('+91 123 456 7890',
-                      style: TextStyle(
-                        fontFamily: 'Source Sans Pro',
-                        fontSize: 20,
-                        color: Colors.teal[800],
-                      )),
-                ),
-              ),
-              Card(
-                margin: EdgeInsets.symmetric(vertical: 10, horizontal: 25),
-                child: ListTile(
-                  leading: Icon(
-                    Icons.email,
-                    color: Colors.teal,
-                  ),
-                  title: Text('ibrahim.silver20@gmail.com',
-                      style: TextStyle(
-                        fontFamily: 'Source Sans Pro',
-                        fontSize: 20,
-                        color: Colors.teal[800],
-                      )),
-                ),
-              ),
-            ],
+    return Center(
+      child: Row(
+        children: [
+          Expanded(
+            child: FlatButton(
+              onPressed: () {
+                setState(() {
+                  rolldice();
+                });
+                print('The left button was pressed');
+              },
+              child: Image.asset('images/dice$leftDiceNumber.png'),
+            ),
           ),
-        ),
+          Expanded(
+            child: FlatButton(
+              onPressed: () {
+                setState(() {
+                  rolldice();
+                });
+                print('The right button was pressed');
+              },
+              child: Image.asset('images/dice$rightDiceNumber.png'),
+            ),
+          ),
+        ],
       ),
     );
   }
