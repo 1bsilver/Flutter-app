@@ -6,7 +6,7 @@ A music app that plays Xylophone sounds. For every Beethoven out there, this wil
 
 ![Finished App](https://github.com/londonappbrewery/Images/blob/master/xylophone-flutter.png)
 
-## What I have learnt
+## What have I learnt
 
 - How to incorporate open source libraries of code into your project using Flutter Packages.
 - How to play sound on both iOS and Android.
